@@ -46,7 +46,6 @@ class SocketManager {
         if (!SocketManager.instance) {
             SocketManager.instance = new SocketManager();
         }
-        console.log('Socket instance', SocketManager.instance);
 
         return SocketManager.instance;
     }
