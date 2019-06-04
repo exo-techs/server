@@ -1,13 +1,18 @@
-const server = require('http').createServer();
-// TODO: For development - should fix
+const app = require('express')();
+const server = require('http').Server(app);
 const io = require('socket.io')(server, { origins: '*:*'});
+
+// TODO: For development - should fix
 const events = require('./socket/SocketEvents');
 const SocketManager = require('./socket/SocketManager');
 const socketManager = SocketManager.getInstance();
 const SocketController = require('./socket/SocketController');
 
-io.on('connection', socket => {
+app.get('/', function (req, res) {
+    res.send('Hello exotech');
+});
 
+io.on('connection', socket => {
     const controller = SocketController(socketManager, socket);
 
     socket.on(events.USER_CONNECT, controller.handleUserConnect)
@@ -17,4 +22,4 @@ io.on('connection', socket => {
     socket.on('disconnect', controller.handleDisconnect);
 });
 
-server.listen(3001);
+server.listen(3002);
