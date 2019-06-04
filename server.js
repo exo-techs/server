@@ -1,5 +1,6 @@
 const server = require('http').createServer();
-const io = require('socket.io')(server);
+// TODO: For development - should fix
+const io = require('socket.io')(server, { origins: '*:*'});
 const events = require('./socket/SocketEvents');
 const SocketManager = require('./socket/SocketManager');
 const socketManager = SocketManager.getInstance();
