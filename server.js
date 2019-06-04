@@ -1,6 +1,7 @@
 const app = require('express')();
 const server = require('http').Server(app);
-const io = require('socket.io')(server, { origins: '*:*'});
+const io = require('socket.io')(server, { origins: '*:*' });
+const port = process.env.PORT || 3002;
 
 // TODO: For development - should fix
 const events = require('./socket/SocketEvents');
@@ -22,4 +23,6 @@ io.on('connection', socket => {
     socket.on('disconnect', controller.handleDisconnect);
 });
 
-server.listen(80);
+server.listen(port, function () {
+    console.log('Listening on ' + port);
+});
