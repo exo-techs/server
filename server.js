@@ -22,4 +22,4 @@ io.on('connection', socket => {
     socket.on('disconnect', controller.handleDisconnect);
 });
 
-server.listen(3002);
+server.listen(80);
